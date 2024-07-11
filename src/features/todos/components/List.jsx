@@ -58,7 +58,9 @@ const List = () => {
           if (todo.isDone) {
             return (
               <StTodoContainer key={todo.id}>
-                <StLink to={`/${index}`} key={todo.id}>
+                {/* 5. 완료된 카드의 상세 페이지에 진입 하였을 때 올바른 데이터를 불러오지 못함. */}
+                {/* 링크 값 바꾸기 */}
+                <StLink to={`/${todo.id}`} key={todo.id}>
                   <div>상세보기</div>
                 </StLink>
                 <div>
@@ -74,7 +76,7 @@ const List = () => {
                   </StButton>
                   <StButton
                     borderColor="green"
-                    onClick={onToggleStatusTodo}
+                    onClick={() => onToggleStatusTodo(todo.id)} //아이디 값 보내주고
                   >
                     {todo.isDone ? "취소!" : "완료!"}
                   </StButton>
