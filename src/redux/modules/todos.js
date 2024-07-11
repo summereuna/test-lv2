@@ -57,12 +57,13 @@ const initialState = {
 
 const todos = (state = initialState, action) => {
   switch (action.type) {
+    // 2. 추가하기 버튼 클릭 후 기존에 존재하던 아이템들이 사라짐.
+    // 리듀서 부분에서 불변성을 지키도록 todos 배열의 상태를 업데이트 해야 한다.
     case ADD_TODO:
       return {
         ...state,
-        todos: [action.payload],
+        todos: [...state.todos, action.payload],
       };
-
     case TOGGLE_STATUS_TODO:
       return {
         ...state,
