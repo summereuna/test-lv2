@@ -64,6 +64,15 @@ const todos = (state = initialState, action) => {
         ...state,
         todos: [...state.todos, action.payload],
       };
+
+    // 3. 삭제 기능이 동작하지 않음.
+    // 리듀서를 작성해 주면 된다.
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+
     case TOGGLE_STATUS_TODO:
       return {
         ...state,
