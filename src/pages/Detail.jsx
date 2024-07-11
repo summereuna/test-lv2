@@ -11,6 +11,13 @@ const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // 4. 상세 페이지에 진입 하였을 때 데이터가 업데이트 되지 않음.
+  // Detail.jsx에서 useEffect를 사용하여 컴포넌트 마운트 시 초기 값을 가져온다.
+  // 현재 페이지의 id값을 사용하여 getTodoByID 액션함수로 보내 dispatch한다.
+  useEffect(() => {
+    dispatch(getTodoByID(id));
+  }, [dispatch, id]);
+
   return (
     <StContainer>
       <StDialog>
