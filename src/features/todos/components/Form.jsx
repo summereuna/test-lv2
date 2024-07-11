@@ -6,23 +6,30 @@ import { addTodo } from "../../../redux/modules/todos.js";
 
 const Form = () => {
   const id = nextId();
-  
   const [todo, setTodo] = useState({
     id: 0,
     title: "",
     body: "",
     isDone: false,
   });
-  
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setTodo({ ...todo, [name]: value });
   };
 
+  // 1. 추가하기 버튼을 클릭해도 추가한 아이템이 화면에 표시되지 않음.
+  // 새로운 todo를 dispatch하고 있지 않아서 그렇다.
+  // Form.jsx에서 useDispatch()를 사한다.
+  // onSubmitHandler 안에서 검증이 끝난 뒤, 새로 추가되는  todo에 대해   dispatch(addTodo({ …todo, id })); 를 해주면 된다.
+
+  const dispatch = useDispatch();
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (todo.title.trim() === "" || todo.body.trim() === "") return;
-    
+
+    //추가하기
+    dispatch(addTodo({ ...todo, id }));
+
     setTodo({
       id: 0,
       title: "",
